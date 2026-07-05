@@ -103,6 +103,29 @@ training run: <https://openagents.com/INSTALL.md> and
 node is a **capability, not an automatic earning path** — paid work and
 settlement stay behind their own gated public promises.
 
+## Windows users — dogfood only (not in launch scope)
+
+The Pylon launch scope above is macOS and Linux. A Windows host — including
+a Windows host with a WSL2 Ubuntu userland — is deliberately **out of the
+first v1.0 launch scope**, and the Pylon bootstrap will report
+`platform.inScope: false` on such a host by design (see
+[`apps/pylon/src/wsl-host-detect.ts`](apps/pylon/src/wsl-host-detect.ts) and
+[`apps/pylon/src/consumer-install-platform-support.ts`](apps/pylon/src/consumer-install-platform-support.ts)).
+
+A first-person dogfood walkthrough for the single Windows operator on the
+design sprint team lives at
+[`docs/dogfood/windows-wsl-pylon-2026-07.md`](docs/dogfood/windows-wsl-pylon-2026-07.md).
+It covers WSL2 Ubuntu setup, cloning the fork inside the Linux home, reading
+the bootstrap verdict, exercising the paths that produce useful receipts, and
+the rollback for every destructive command. Treat it as **evidence gathering,
+not a coverage claim** — nothing in that doc changes the launch-scope
+contract, the classifier, or the `apps/pylon/README.md` copy-audit guard.
+
+Khala Code Desktop's editor + repo-context window is host-agnostic and
+usable inside WSL2 today; see
+[`clients/khala-code-desktop/docs/repo-context-window.md`](clients/khala-code-desktop/docs/repo-context-window.md)
+for the `KHALA_CODE_DESKTOP_WORKSPACE` env-var setup and the safe defaults.
+
 ## Notes for AI agents
 
 - **Clone shallow.** Always `git clone --depth 1` this repo. A full clone
